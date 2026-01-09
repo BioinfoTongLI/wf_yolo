@@ -1,0 +1,59 @@
+// nf-core modules test yolo/detect
+nextflow_process {
+
+    name "Test Process YOLO_DETECT"
+    script "../main.nf"
+    process "YOLO_DETECT"
+
+    tag "modules"
+    tag "modules_bits"
+    tag "yolo"
+    tag "yolo/detect"
+
+    test("predict - tif") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    file(params.modules_testdata_base_path + 'astronaut.tif', checkIfExists: true),
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("predict - tif - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    file(params.modules_testdata_base_path + 'astronaut.tif', checkIfExists: true),
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}
