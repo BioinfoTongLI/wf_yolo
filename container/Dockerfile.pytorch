@@ -1,0 +1,20 @@
+FROM rapidsai/miniforge-cuda:cuda12.5.1-base-ubuntu22.04-py3.10
+
+SHELL ["/bin/bash", "-c"]
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# install os packages
+RUN apt-get update && \
+    apt-get install --no-install-recommends --yes \
+        ca-certificates git procps software-properties-common build-essential && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# create virtual environment
+# update pip and install dependencies
+# install cell2location
+RUN python -m venv /opt/my_env && \
+    source /opt/my_env/bin/activate && \
+    pip install --upgrade pip wheel && \
+    pip install fire --no-cache-dir
