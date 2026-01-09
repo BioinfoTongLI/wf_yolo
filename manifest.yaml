@@ -1,0 +1,3 @@
+images:
+  - ['id':'test', "s3://spatial_demo_datasets/astronaut.tif"]
+out_dir: "another_output"
