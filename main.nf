@@ -1,9 +1,9 @@
 #!/usr/bin/env/ nextflow
-#Copyright (c) [YEARS] Wellcome Sanger Institute
 
-params.file_in = ""
+include { YOLO_DETECT } from './modules/bits/yolo/detect/main'
+
+params.images = [[['id': 'test'], "s3://spatial_demo_datasets/astronaut.tif"]]
 
 workflow {
-    test(channel.from(params.file_in))
-    test.out.view()
+    YOLO_DETECT(channel.from(params.images))
 }
