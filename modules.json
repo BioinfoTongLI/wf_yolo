@@ -1,0 +1,19 @@
+{
+    "name": "wf_yolo_detect",
+    "homePage": "",
+    "repos": {
+        "https://github.com/BioImageTools/nextflow-modules.git": {
+            "modules": {
+                "bits": {
+                    "yolo/detect": {
+                        "branch": "main",
+                        "git_sha": "e094638d2704cd9fa0740f7c16477e86c038c8f2",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
